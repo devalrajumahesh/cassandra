@@ -1,0 +1,31 @@
+===================Apache Casandra installation=====
+
+
+Apache Cassandra is a NoSQL database management system which is free and open-source.
+
+Before downloading Cassandra , you should update your system and install Java 8.
+1) 
+ sudo yum update
+ wget --no-cookies --no-check-certificate --header "Cookie:oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm" 
+ yum -y localinstall jdk-8u131-linux-x64.rpm
+
+after then we can verify java is installed or not 
+
+2) create a repo for the name of cassandra.repo in yum.repos.d   and give the content   /etc/yum.repos.d/cassandra.repo
+
+[cassandra]
+name=Apache Cassandra
+baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://www.apache.org/dist/cassandra/KEYS
+
+install , start and enable the cassandra
+
+yum install cassandra  
+systemctl start cassandra
+systemctl enable cassandra
+
+Verify that cassandra is running by invoking nodetool status from the command line.
+
+$ nodetool status
